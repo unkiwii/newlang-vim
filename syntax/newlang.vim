@@ -63,7 +63,7 @@ if version >= 508 || !exists("did_nl_syn_inits")
   delcommand HiLink
 endif
 
-let b:current_syntax = "nl"
+let b:current_syntax = "newlang"
 
 let &cpo = s:cpo_save
 unlet s:cpo_save
