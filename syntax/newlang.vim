@@ -25,16 +25,20 @@ syn keyword nlAbstract  abstract
 syn keyword nlExtends   extends
 syn keyword nlStatic    static
 syn keyword nlPrimitive primitive
+syn keyword nlConst     const
 
 syn keyword nlNull  null
 syn keyword nlTrue  true
 syn keyword nlFalse false
 
-syn match nlComment /#.*$/
-syn match nlNumber  /[^0-9][0-9]+/hs=s+1
-syn match nlType    /^[A-Z][a-zA-Z0-9]*/
-syn match nlType    /[^A-Za-z0-9][A-Z][a-zA-Z0-9]*/hs=s+1
-syn match nlString  /"[^"]*"/
+syn match nlNumber    /[^0-9][0-9][0-9]*/hs=s+1
+syn match nlNumber    /[^0-9][0-9][0-9]*\.[0-9][0-9]*/hs=s+1
+syn match nlConstName /[^A-Za-z0-9][A-Z][A-Z0-9][A-Z0-9]*/hs=s+1
+syn match nlType      /^[A-Z][a-zA-Z0-9]*[a-z0-9]/
+syn match nlType      /[^A-Za-z0-9][A-Z][a-zA-Z0-9]*[a-z0-9]/hs=s+1
+syn match nlString    /"[^"]*"/
+syn match nlChar      /'.'/
+syn match nlComment   /#.*$/
 
 if version >= 508 || !exists("did_nl_syn_inits")
   if version <= 508
@@ -59,6 +63,9 @@ if version >= 508 || !exists("did_nl_syn_inits")
   HiLink nlComment    Comment
   HiLink nlType       Type
   HiLink nlString     String
+  HiLink nlChar       String
+  HiLink nlConst      Define
+  HiLink nlConstName  Identifier
 
   delcommand HiLink
 endif
