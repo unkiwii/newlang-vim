@@ -18,14 +18,13 @@ let s:cpo_save = &cpo
 set cpo&vim
 
 syn keyword nlSelf      self
-syn keyword nlReturn    return
 syn keyword nlTypeDef   type
-syn keyword nlImport    import
 syn keyword nlAbstract  abstract
 syn keyword nlExtends   extends
 syn keyword nlStatic    static
 syn keyword nlPrimitive primitive
 syn keyword nlConst     const
+syn keyword nlVoid      void
 
 syn keyword nlNull  null
 syn keyword nlTrue  true
@@ -40,6 +39,8 @@ syn match nlString    /"[^"]*"/
 syn match nlChar      /'.'/
 syn match nlComment   /#.*$/
 
+syn match nlUse       /^use \(\.\.\/\)*[a-z][a-zA-Z0-9]*\(\/[a-zA-Z0-9]*\)*\.nl\(ib\)\{0,1\}$/he=s+3
+
 if version >= 508 || !exists("did_nl_syn_inits")
   if version <= 508
     let did_nl_syn_inits = 1
@@ -49,8 +50,7 @@ if version >= 508 || !exists("did_nl_syn_inits")
   endif
 
   HiLink nlSelf       Keyword
-  HiLink nlReturn     Keyword
-  HiLink nlImport     Include
+  HiLink nlUse        Include
   HiLink nlTypeDef    Define
   HiLink nlExtends    Define
   HiLink nlStatic     Define
@@ -65,6 +65,7 @@ if version >= 508 || !exists("did_nl_syn_inits")
   HiLink nlString     String
   HiLink nlChar       String
   HiLink nlConst      Define
+  HiLink nlVoid       Define
   HiLink nlConstName  Identifier
 
   delcommand HiLink
